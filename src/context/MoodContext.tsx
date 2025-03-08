@@ -18,6 +18,7 @@ interface MoodContextType {
   setShowDetailedInfo: (show: boolean) => void;
   selectedMoodCategory: string | null;
   setSelectedMoodCategory: (category: string | null) => void;
+  setShowCitySelector: (show: boolean) => void;
 }
 
 const MoodContext = createContext<MoodContextType | undefined>(undefined);
@@ -31,6 +32,7 @@ export const MoodProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [activeCity, setActiveCity] = useState<string>('San Francisco, CA');
   const [showDetailedInfo, setShowDetailedInfo] = useState<boolean>(false);
   const [selectedMoodCategory, setSelectedMoodCategory] = useState<string | null>(null);
+  const [showCitySelector, setShowCitySelector] = useState<boolean>(false);
 
   const fetchData = async () => {
     try {
@@ -82,6 +84,7 @@ export const MoodProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setShowDetailedInfo,
         selectedMoodCategory,
         setSelectedMoodCategory,
+        setShowCitySelector,
       }}
     >
       {children}

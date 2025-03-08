@@ -8,6 +8,7 @@ import DaySelector from './DaySelector';
 import DetailedMoodInfo from './DetailedMoodInfo';
 import CitySelector from './CitySelector';
 import CircularMoodSelector from './CircularMoodSelector';
+import CitiesList from './CitiesList';
 
 const Layout: React.FC = () => {
   const { refreshData, showDetailedInfo, cityData } = useMood();
@@ -39,7 +40,7 @@ const Layout: React.FC = () => {
           </div>
           
           {/* Main content */}
-          <div className="flex-1 flex flex-col relative">
+          <div className="flex-1 flex flex-col relative overflow-y-auto">
             {showDetailedInfo ? (
               <DetailedMoodInfo />
             ) : (
@@ -68,6 +69,9 @@ const Layout: React.FC = () => {
                     ))}
                   </div>
                 </div>
+
+                {/* Cities List */}
+                <CitiesList />
               </>
             )}
             

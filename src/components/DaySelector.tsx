@@ -60,7 +60,7 @@ const DaySelector: React.FC = () => {
         <ChevronRight size={16} />
       </button>
       
-      <style jsx>{`
+      <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
