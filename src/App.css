@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,14 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Add CSS variables for mood colors */
+:root {
+  --mood-happy: #FFD166;
+  --mood-energetic: #EF476F;
+  --mood-calm: #06D6A0;
+  --mood-melancholy: #118AB2;
+  --mood-stressed: #E76F51;
+  --mood-inspired: #9381FF;
 }

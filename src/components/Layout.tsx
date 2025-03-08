@@ -1,17 +1,16 @@
 
 import React, { useState } from 'react';
 import { useMood } from '@/context/MoodContext';
-import { RefreshCw, Plus, User, ChevronDown, MapPin } from 'lucide-react';
+import { User, MapPin, Plus } from 'lucide-react';
 import CityHeader from './CityHeader';
 import MoodOverview from './MoodOverview';
 import DaySelector from './DaySelector';
-import FriendsList from './FriendsList';
 import DetailedMoodInfo from './DetailedMoodInfo';
 import CitySelector from './CitySelector';
 import CircularMoodSelector from './CircularMoodSelector';
 
 const Layout: React.FC = () => {
-  const { refreshData, showDetailedInfo } = useMood();
+  const { refreshData, showDetailedInfo, cityData } = useMood();
   const [showMoodSelector, setShowMoodSelector] = useState(false);
   const [showCitySelector, setShowCitySelector] = useState(false);
 
@@ -40,26 +39,47 @@ const Layout: React.FC = () => {
           </div>
           
           {/* Main content */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col relative">
             {showDetailedInfo ? (
               <DetailedMoodInfo />
             ) : (
               <>
                 <MoodOverview />
                 <DaySelector />
-                <FriendsList />
+                
+                {/* Neighborhoods Section */}
+                <div className="bg-zinc-900 rounded-lg p-4 mb-6">
+                  <h2 className="text-lg font-semibold mb-3">Neighborhoods</h2>
+                  <div className="space-y-3">
+                    {cityData?.neighborhoods.map((neighborhood, index) => (
+                      <div key={index} className="flex items-center justify-between bg-zinc-800 p-3 rounded-lg">
+                        <span>{neighborhood.name}</span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm text-zinc-400">{neighborhood.currentMood.mood}</span>
+                          <div 
+                            className="w-3 h-3 rounded-full" 
+                            style={{ 
+                              backgroundColor: `var(--mood-${neighborhood.currentMood.mood.toLowerCase()})`,
+                              boxShadow: `0 0 8px var(--mood-${neighborhood.currentMood.mood.toLowerCase()})` 
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </>
             )}
-          </div>
-          
-          {/* Add mood button */}
-          <div className="sticky bottom-6 flex justify-center">
-            <button 
-              onClick={() => setShowMoodSelector(true)}
-              className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg"
-            >
-              <Plus size={24} />
-            </button>
+            
+            {/* Add mood button (repositioned to the side) */}
+            <div className="absolute bottom-10 right-0">
+              <button 
+                onClick={() => setShowMoodSelector(true)}
+                className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg"
+              >
+                <Plus size={24} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
