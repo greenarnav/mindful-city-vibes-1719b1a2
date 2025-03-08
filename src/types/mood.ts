@@ -7,6 +7,33 @@ export interface MoodData {
   timestamp: string;
 }
 
+export interface TopicData {
+  id: string;
+  text: string;
+  popularity: number; // 0-100
+}
+
+export interface CityMood {
+  city: string;
+  state: string;
+  overall: {
+    sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
+    mood: MoodType;
+    value: number;
+  };
+  pastFiveDays: {
+    day: string;
+    shortDay: string;
+    sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
+  }[];
+  topics: {
+    thinking: TopicData[];
+    caring: TopicData[];
+    burning: TopicData[];
+  };
+  neighborhoods: NeighborhoodMood[];
+}
+
 export interface NeighborhoodMood {
   id: string;
   name: string;
@@ -18,12 +45,14 @@ export interface FriendMood {
   id: string;
   name: string;
   avatar: string;
+  location: string;
   currentMood: MoodData;
 }
 
-export interface CityMood {
-  overall: MoodData;
-  pastFiveDays: MoodData[];
-  neighborhoods: NeighborhoodMood[];
-  friends: FriendMood[];
+export interface CitiesData {
+  cities: {
+    city: string;
+    state: string;
+  }[];
+  currentCity: string;
 }

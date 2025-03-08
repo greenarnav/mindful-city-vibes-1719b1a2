@@ -1,82 +1,79 @@
 
-import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import React, { useState } from 'react';
 import { useMood } from '@/context/MoodContext';
-import TodayMood from './TodayMood';
-import HistoryView from './HistoryView';
-import NeighborhoodsView from './NeighborhoodsView';
-import FriendsView from './FriendsView';
-import AddMood from './AddMood';
-import { Separator } from '@/components/ui/separator';
-import { 
-  LayoutDashboard, 
-  Clock, 
-  MapPin, 
-  Users, 
-  RefreshCw 
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { RefreshCw, Plus, User, ChevronDown, MapPin } from 'lucide-react';
+import CityHeader from './CityHeader';
+import MoodOverview from './MoodOverview';
+import DaySelector from './DaySelector';
+import FriendsList from './FriendsList';
+import DetailedMoodInfo from './DetailedMoodInfo';
+import CitySelector from './CitySelector';
+import CircularMoodSelector from './CircularMoodSelector';
 
 const Layout: React.FC = () => {
-  const { activeTab, setActiveTab, refreshData } = useMood();
+  const { refreshData, showDetailedInfo } = useMood();
+  const [showMoodSelector, setShowMoodSelector] = useState(false);
+  const [showCitySelector, setShowCitySelector] = useState(false);
 
   return (
-    <div className="container py-6 max-w-5xl">
-      <header className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold">City Mood</h1>
-          <p className="text-muted-foreground">Real-time city mood tracker</p>
-        </div>
-        <Button variant="outline" size="sm" onClick={refreshData}>
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
-        </Button>
-      </header>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="md:col-span-2 lg:col-span-3">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid grid-cols-4 h-auto p-1">
-              <TabsTrigger value="today" className="py-2">
-                <LayoutDashboard className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Today</span>
-              </TabsTrigger>
-              <TabsTrigger value="history" className="py-2">
-                <Clock className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">History</span>
-              </TabsTrigger>
-              <TabsTrigger value="neighborhoods" className="py-2">
-                <MapPin className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Areas</span>
-              </TabsTrigger>
-              <TabsTrigger value="friends" className="py-2">
-                <Users className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Friends</span>
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="today" className="mt-6 space-y-4">
-              <TodayMood />
-            </TabsContent>
-
-            <TabsContent value="history" className="mt-6 space-y-4">
-              <HistoryView />
-            </TabsContent>
-
-            <TabsContent value="neighborhoods" className="mt-6 space-y-4">
-              <NeighborhoodsView />
-            </TabsContent>
-
-            <TabsContent value="friends" className="mt-6 space-y-4">
-              <FriendsView />
-            </TabsContent>
-          </Tabs>
-        </div>
-
-        <div className="md:col-span-1">
-          <AddMood />
+    <div className="bg-zinc-800 min-h-screen text-white">
+      <div className="max-w-sm mx-auto relative">
+        {/* Phone frame for design */}
+        <div className="px-4 py-6 max-w-sm mx-auto flex flex-col h-screen">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-6">
+            <button 
+              onClick={() => setShowCitySelector(true)}
+              className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center"
+            >
+              <MapPin size={18} />
+            </button>
+            
+            <CityHeader />
+            
+            <button 
+              onClick={() => {}}
+              className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center"
+            >
+              <User size={18} />
+            </button>
+          </div>
+          
+          {/* Main content */}
+          <div className="flex-1 flex flex-col">
+            {showDetailedInfo ? (
+              <DetailedMoodInfo />
+            ) : (
+              <>
+                <MoodOverview />
+                <DaySelector />
+                <FriendsList />
+              </>
+            )}
+          </div>
+          
+          {/* Add mood button */}
+          <div className="sticky bottom-6 flex justify-center">
+            <button 
+              onClick={() => setShowMoodSelector(true)}
+              className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg"
+            >
+              <Plus size={24} />
+            </button>
+          </div>
         </div>
       </div>
+      
+      {/* Modals */}
+      <CircularMoodSelector 
+        isOpen={showMoodSelector} 
+        onClose={() => setShowMoodSelector(false)} 
+      />
+      
+      <CitySelector 
+        isOpen={showCitySelector} 
+        onClose={() => setShowCitySelector(false)} 
+      />
     </div>
   );
 };
