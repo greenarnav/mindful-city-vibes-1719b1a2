@@ -79,7 +79,7 @@ const Layout: React.FC = () => {
             <div className="absolute bottom-10 right-0">
               <button 
                 onClick={() => setShowMoodSelector(true)}
-                className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg"
+                className="w-12 h-12 bg-zinc-900 text-white rounded-full flex items-center justify-center shadow-lg"
               >
                 <Plus size={24} />
               </button>
