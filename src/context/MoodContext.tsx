@@ -55,6 +55,13 @@ export const MoodProvider: React.FC<{ children: React.ReactNode }> = ({ children
     fetchData();
   }, [activeCity]);
 
+  // Handle when a day is selected
+  useEffect(() => {
+    // If the active tab changes to a specific day, we could fetch data for that day
+    // This is a mock effect, in a real app you would fetch data for the selected day
+    console.log(`Day selected: ${activeTab}`);
+  }, [activeTab]);
+
   const submitMood = (mood: MoodType, value: number) => {
     try {
       const success = submitUserMood(mood, value);
