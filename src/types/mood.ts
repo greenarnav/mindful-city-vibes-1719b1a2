@@ -20,11 +20,15 @@ export interface CityMood {
     sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
     mood: MoodType;
     value: number;
+    timestamp?: string;
   };
   pastFiveDays: {
     day: string;
     shortDay: string;
     sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
+    mood?: MoodType;
+    value?: number;
+    timestamp?: string;
   }[];
   topics: {
     thinking: TopicData[];
@@ -32,6 +36,7 @@ export interface CityMood {
     burning: TopicData[];
   };
   neighborhoods: NeighborhoodMood[];
+  friends?: FriendMood[]; // Make this optional to fix the type error
 }
 
 export interface NeighborhoodMood {

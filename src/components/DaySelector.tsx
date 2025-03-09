@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useMood } from '@/context/MoodContext';
 import SentimentIcon from './SentimentIcon';
 
@@ -13,6 +13,24 @@ const DaySelector: React.FC = () => {
     setActiveTab(day);
   };
 
+  // Auto-scroll to active tab
+  useEffect(() => {
+    if (scrollRef.current && activeTab) {
+      const activeElement = scrollRef.current.querySelector(`[data-day="${activeTab}"]`);
+      if (activeElement) {
+        const containerWidth = scrollRef.current.offsetWidth;
+        const elementOffset = activeElement.getBoundingClientRect().left;
+        const containerOffset = scrollRef.current.getBoundingClientRect().left;
+        const scrollPosition = elementOffset - containerOffset - containerWidth / 2 + 25;
+        
+        scrollRef.current.scrollTo({
+          left: scrollRef.current.scrollLeft + scrollPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [activeTab]);
+
   return (
     <div className="relative mb-6">
       <div 
@@ -23,13 +41,18 @@ const DaySelector: React.FC = () => {
         {cityData.pastFiveDays.map((day, index) => (
           <div 
             key={index} 
-            className={`flex flex-col items-center cursor-pointer min-w-[50px] snap-start ${
-              activeTab === day.shortDay ? 'opacity-100' : 'opacity-70'
+            data-day={day.shortDay}
+            className={`flex flex-col items-center cursor-pointer min-w-[60px] snap-start transition-all duration-300 ${
+              activeTab === day.shortDay ? 'opacity-100 scale-110' : 'opacity-70 hover:opacity-90'
             }`}
             onClick={() => handleDayClick(day.shortDay)}
           >
-            <SentimentIcon sentiment={day.sentiment} size={24} />
-            <span className="text-xs mt-1 text-zinc-300">{day.shortDay}</span>
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+              activeTab === day.shortDay ? 'shadow-[0_0_15px_var(--mood-energetic)]' : ''
+            }`}>
+              <SentimentIcon sentiment={day.sentiment} size={28} />
+            </div>
+            <span className="text-xs mt-1 text-zinc-300 font-semibold">{day.shortDay}</span>
           </div>
         ))}
       </div>
