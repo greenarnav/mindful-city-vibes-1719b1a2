@@ -2,12 +2,15 @@
 import React from 'react';
 import { useMood } from '@/context/MoodContext';
 import { Heart, MessageCircle, Moon } from 'lucide-react';
-import { mockFriendsData } from '@/data/mockData';
 
 const FriendsList: React.FC = () => {
+  const { cityData } = useMood();
+  
+  if (!cityData || !cityData.friends) return null;
+
   return (
     <div className="space-y-3">
-      {mockFriendsData.map((friend) => (
+      {cityData.friends.map((friend) => (
         <div 
           key={friend.id} 
           className="bg-zinc-700 rounded-lg p-3 flex items-center justify-between"
