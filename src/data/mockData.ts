@@ -48,26 +48,41 @@ export const mockCityData: CityMood = {
       day: "Thursday",
       shortDay: "THU",
       sentiment: 'positive',
+      mood: 'happy',
+      value: 85,
+      timestamp: format(subDays(new Date(), 4), "yyyy-MM-dd'T'HH:mm:ss")
     },
     {
       day: "Friday",
       shortDay: "FRI",
       sentiment: 'mixed',
+      mood: 'energetic',
+      value: 72,
+      timestamp: format(subDays(new Date(), 3), "yyyy-MM-dd'T'HH:mm:ss")
     },
     {
       day: "Saturday",
       shortDay: "SAT",
       sentiment: 'neutral',
+      mood: 'calm',
+      value: 63,
+      timestamp: format(subDays(new Date(), 2), "yyyy-MM-dd'T'HH:mm:ss")
     },
     {
       day: "Sunday",
       shortDay: "SUN",
       sentiment: 'negative',
+      mood: 'melancholy',
+      value: 45,
+      timestamp: format(subDays(new Date(), 1), "yyyy-MM-dd'T'HH:mm:ss")
     },
     {
       day: "Monday",
       shortDay: "TODAY",
       sentiment: 'mixed',
+      mood: 'inspired',
+      value: 78,
+      timestamp: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
     }
   ],
   topics: {
@@ -129,55 +144,53 @@ export const mockCityData: CityMood = {
       pastMoods: generatePastMoods(5, 'stressed'),
     },
   ],
+  friends: [
+    {
+      id: "1",
+      name: "Adam Smith",
+      avatar: "https://i.pravatar.cc/150?img=1",
+      location: "Jersey",
+      currentMood: {
+        mood: 'calm',
+        value: 78,
+        timestamp: new Date().toISOString(),
+      },
+    },
+    {
+      id: "2",
+      name: "Emily Johnson",
+      avatar: "https://i.pravatar.cc/150?img=2",
+      location: "Boston",
+      currentMood: {
+        mood: 'happy',
+        value: 92,
+        timestamp: new Date().toISOString(),
+      },
+    },
+    {
+      id: "3",
+      name: "Kyra Langland",
+      avatar: "https://i.pravatar.cc/150?img=3",
+      location: "Phoenix",
+      currentMood: {
+        mood: 'energetic',
+        value: 85,
+        timestamp: new Date().toISOString(),
+      },
+    },
+    {
+      id: "4",
+      name: "Seinna Santer",
+      avatar: "https://i.pravatar.cc/150?img=4",
+      location: "San Francisco",
+      currentMood: {
+        mood: 'inspired',
+        value: 88,
+        timestamp: new Date().toISOString(),
+      },
+    },
+  ],
 };
-
-// Mock friends data based on locations
-export const mockFriendsData = [
-  {
-    id: "1",
-    name: "Adam Smith",
-    avatar: "https://i.pravatar.cc/150?img=1",
-    location: "Jersey",
-    currentMood: {
-      mood: 'calm',
-      value: 78,
-      timestamp: new Date().toISOString(),
-    },
-  },
-  {
-    id: "2",
-    name: "Emily Johnson",
-    avatar: "https://i.pravatar.cc/150?img=2",
-    location: "Boston",
-    currentMood: {
-      mood: 'happy',
-      value: 92,
-      timestamp: new Date().toISOString(),
-    },
-  },
-  {
-    id: "3",
-    name: "Kyra Langland",
-    avatar: "https://i.pravatar.cc/150?img=3",
-    location: "Phoenix",
-    currentMood: {
-      mood: 'energetic',
-      value: 85,
-      timestamp: new Date().toISOString(),
-    },
-  },
-  {
-    id: "4",
-    name: "Seinna Santer",
-    avatar: "https://i.pravatar.cc/150?img=4",
-    location: "San Francisco",
-    currentMood: {
-      mood: 'inspired',
-      value: 88,
-      timestamp: new Date().toISOString(),
-    },
-  },
-];
 
 // Mock cities data
 export const mockCitiesData: CitiesData = {
