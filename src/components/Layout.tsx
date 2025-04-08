@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useMood } from '@/context/MoodContext';
 import { Users, MapPin, Settings, FlaskConical } from 'lucide-react';
@@ -13,6 +12,7 @@ import FriendsView from './FriendsView';
 import SettingsView from './SettingsView';
 import BetaFeaturesView from './BetaFeaturesView';
 import MapView from './MapView';
+import MoodIcon from './MoodIcon';
 
 const Layout: React.FC = () => {
   const { refreshData, showDetailedInfo, cityData } = useMood();
@@ -20,7 +20,6 @@ const Layout: React.FC = () => {
   const [showCitySelector, setShowCitySelector] = useState(false);
   const [activeTab, setActiveTab] = useState<'city' | 'contacts' | 'settings' | 'beta'>('city');
 
-  // Render the appropriate view based on the active tab
   const renderTabContent = () => {
     if (showDetailedInfo) {
       return <DetailedMoodInfo />;
@@ -43,7 +42,6 @@ const Layout: React.FC = () => {
             <MoodOverview />
             <DaySelector />
             
-            {/* Neighborhoods Section */}
             <div className="bg-zinc-900 rounded-lg p-4 mb-6">
               <h2 className="text-lg font-semibold mb-3">Neighborhoods</h2>
               <div className="space-y-3">
@@ -55,7 +53,6 @@ const Layout: React.FC = () => {
                       key={index} 
                       className="flex items-center justify-between bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700 transition-colors"
                       onClick={() => {
-                        // Set the category to the neighborhood and show detailed info
                         useMood().setSelectedMoodCategory(`neighborhood-${neighborhood.id}`);
                         useMood().setShowDetailedInfo(true);
                       }}
@@ -88,7 +85,6 @@ const Layout: React.FC = () => {
               </div>
             </div>
 
-            {/* Cities List */}
             <CitiesList />
           </>
         );
@@ -98,18 +94,14 @@ const Layout: React.FC = () => {
   return (
     <div className="bg-zinc-800 min-h-screen text-white">
       <div className="max-w-sm mx-auto relative">
-        {/* Phone frame for design */}
         <div className="px-4 py-6 max-w-sm mx-auto flex flex-col h-screen">
-          {/* Header */}
           <div className="flex justify-center items-center mb-6">
             <CityHeader />
           </div>
           
-          {/* Main content */}
           <div className="flex-1 flex flex-col relative overflow-y-auto mb-16">
             {renderTabContent()}
             
-            {/* Add mood button (repositioned to the side) */}
             <div className="fixed bottom-20 right-4 z-10">
               <button 
                 onClick={() => setShowMoodSelector(true)}
@@ -121,7 +113,6 @@ const Layout: React.FC = () => {
             </div>
           </div>
           
-          {/* Bottom Toolbar */}
           <div className="fixed bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-700 z-20">
             <div className="max-w-sm mx-auto flex justify-around">
               <button 
@@ -170,7 +161,6 @@ const Layout: React.FC = () => {
         </div>
       </div>
       
-      {/* Modals */}
       <CircularMoodSelector 
         isOpen={showMoodSelector} 
         onClose={() => setShowMoodSelector(false)} 

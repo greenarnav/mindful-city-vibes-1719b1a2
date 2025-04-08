@@ -57,7 +57,8 @@ const DaySelector: React.FC = () => {
         ))}
       </div>
       
-      <style jsx>{`
+      <style>
+        {`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
@@ -65,7 +66,8 @@ const DaySelector: React.FC = () => {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };

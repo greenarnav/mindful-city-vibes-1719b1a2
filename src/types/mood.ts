@@ -13,6 +13,15 @@ export interface TopicData {
   popularity: number; // 0-100
 }
 
+export interface DayMoodData {
+  day: string;
+  shortDay: string;
+  sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
+  mood?: MoodType;
+  value?: number;
+  timestamp?: string;
+}
+
 export interface CityMood {
   city: string;
   state: string;
@@ -22,14 +31,7 @@ export interface CityMood {
     value: number;
     timestamp?: string;
   };
-  pastFiveDays: {
-    day: string;
-    shortDay: string;
-    sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
-    mood?: MoodType;
-    value?: number;
-    timestamp?: string;
-  }[];
+  pastFiveDays: DayMoodData[];
   topics: {
     thinking: TopicData[];
     caring: TopicData[];
