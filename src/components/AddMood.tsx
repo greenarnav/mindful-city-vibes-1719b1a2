@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useMood } from '@/context/MoodContext';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import MoodIcon from './MoodIcon';
+import MoodIcon from './MoodIcon'; // Make sure MoodIcon is imported
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { MoodType } from '@/types/mood';

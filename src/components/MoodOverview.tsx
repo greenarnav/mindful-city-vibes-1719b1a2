@@ -2,7 +2,7 @@
 import React from 'react';
 import { useMood } from '@/context/MoodContext';
 import SentimentIcon from './SentimentIcon';
-import MoodIcon from './MoodIcon';
+import MoodIcon from './MoodIcon'; // Make sure MoodIcon is imported
 import { ArrowDown, ArrowRight, ArrowUp } from 'lucide-react';
 
 const MoodOverview: React.FC = () => {

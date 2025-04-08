@@ -17,9 +17,9 @@ export interface DayMoodData {
   day: string;
   shortDay: string;
   sentiment: 'positive' | 'negative' | 'neutral' | 'mixed';
-  mood?: MoodType;
-  value?: number;
-  timestamp?: string;
+  mood: MoodType;  // Changed from optional to required to match MoodData
+  value: number;   // Changed from optional to required to match MoodData
+  timestamp: string; // Changed from optional to required to match MoodData
 }
 
 export interface CityMood {

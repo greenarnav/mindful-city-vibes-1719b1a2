@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useMood } from '@/context/MoodContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,6 +5,7 @@ import MoodBadge from './MoodBadge';
 import MoodChart from './MoodChart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MapPin } from 'lucide-react';
+import MoodIcon from './MoodIcon';
 
 const NeighborhoodsView: React.FC = () => {
   const { cityData, loading } = useMood();

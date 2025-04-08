@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useMood } from '@/context/MoodContext';
 import { Building, MapPin } from 'lucide-react';
@@ -10,19 +9,13 @@ const CitiesList: React.FC = () => {
   if (!citiesData) return null;
 
   const handleCityClick = (city: string, state: string) => {
-    // Set active city
     setActiveCity(`${city}, ${state}`);
-    
-    // Also show detailed info for this city
     setSelectedMoodCategory(`city-${city}`);
     setShowDetailedInfo(true);
   };
 
-  // This function simulates getting a random mood for each city
-  // In a real app, this would come from your API
   const getMockMoodForCity = (cityName: string) => {
     const moods = ['happy', 'energetic', 'calm', 'melancholy', 'stressed', 'inspired'];
-    // Use city name to generate a predictable but "random" index
     const charCode = cityName.charCodeAt(0) % moods.length;
     return moods[charCode] as 'happy' | 'energetic' | 'calm' | 'melancholy' | 'stressed' | 'inspired';
   };

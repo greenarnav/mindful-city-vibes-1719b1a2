@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useMood } from '@/context/MoodContext';
 import SentimentIcon from './SentimentIcon';
+import MoodIcon from './MoodIcon'; // Added missing import
 
 const DaySelector: React.FC = () => {
   const { cityData, setActiveTab, activeTab } = useMood();

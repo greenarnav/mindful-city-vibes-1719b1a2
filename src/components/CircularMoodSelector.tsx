@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useMood } from '@/context/MoodContext';
-import MoodIcon from './MoodIcon';
+import MoodIcon from './MoodIcon'; // Make sure MoodIcon is imported
 import { Slider } from '@/components/ui/slider';
 import { MoodType } from '@/types/mood';
 import { X } from 'lucide-react';

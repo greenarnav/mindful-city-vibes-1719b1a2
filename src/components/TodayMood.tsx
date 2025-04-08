@@ -3,7 +3,7 @@ import React from 'react';
 import { useMood } from '@/context/MoodContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import MoodBadge from './MoodBadge';
-import MoodIcon from './MoodIcon';
+import MoodIcon from './MoodIcon'; // Make sure MoodIcon is imported
 import { Progress } from '@/components/ui/progress';
 import { format } from 'date-fns';
 
